@@ -3,106 +3,573 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Azizur Rahman Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <title>Azizur Rahman | Multidisciplinary Designer & Video Editor</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #000000;
+            --secondary: #333333;
+            --accent: #3b82f6;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .hero-bg {
+            background: linear-gradient(135deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0) 100%);
+        }
+        
+        .timeline-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 6px;
+            top: 24px;
+            height: 100%;
+            width: 2px;
+            background: var(--accent);
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .active::after {
+            width: 100%;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+    </style>
 </head>
-<body>
-    <header id="home">
-        <nav class="navbar">
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#portfolio">Portfolio</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-        <section class="hero">
-            <div class="hero-content">
-                <h1>Hi, I’m Azizur Rahman — turning stories into stunning visuals.</h1>
-                <a href="#portfolio" class="btn">View Portfolio</a>
-            </div>
-            <div class="hero-animation"></div>
-        </section>
-    </header>
-
-    <main>
-        <section id="about" class="about">
-            <h2>About</h2>
-            <p>Hi, I’m Azizur Rahman — a multidisciplinary designer and video editor passionate about telling stories through pixels and motion. With a background in branding, social media content, and visual campaigns, I specialize in turning ideas into eye-catching, effective creative.</p>
-            <p><strong>Education:</strong> BBA in Marketing, East West University, Bangladesh (2024)</p>
-            <p><a href="#" class="resume">Download Resume</a></p>
-        </section>
-
-        <section id="experience" class="experience">
-            <h2>Experience</h2>
-            <div class="timeline">
-                <div class="event">
-                    <h3>Brand Marketing Intern – Marico BD</h3>
-                    <span>Oct 2024 – Dec 2024</span>
-                    <p>Managed Parachute Advansed brand projects, POSM design, and campaign development.</p>
+<body class="bg-white text-gray-800">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white bg-opacity-90 shadow-sm z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="#home" class="text-xl font-bold text-gray-900">Azizur Rahman</a>
                 </div>
-                <div class="event">
-                    <h3>BizLearner (HR) – Unilever BD</h3>
-                    <span>Apr 2023 – Jun 2023</span>
-                    <p>Designed campaign content on wellness, health, and internal communications.</p>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="nav-link text-gray-700 hover:text-gray-900">Home</a>
+                    <a href="#about" class="nav-link text-gray-700 hover:text-gray-900">About</a>
+                    <a href="#experience" class="nav-link text-gray-700 hover:text-gray-900">Experience</a>
+                    <a href="#skills" class="nav-link text-gray-700 hover:text-gray-900">Skills</a>
+                    <a href="#services" class="nav-link text-gray-700 hover:text-gray-900">Services</a>
+                    <a href="#portfolio" class="nav-link text-gray-700 hover:text-gray-900">Portfolio</a>
+                    <a href="#contact" class="nav-link text-gray-700 hover:text-gray-900">Contact</a>
                 </div>
-                <div class="event">
-                    <h3>CEX Executive – Next Ventures</h3>
-                    <span>Mar 2022 – Mar 2023</span>
-                    <p>Client handling and sales growth of 17% via business development.</p>
+                <div class="md:hidden flex items-center">
+                    <button id="menu-btn" class="text-gray-700 hover:text-gray-900">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
                 </div>
             </div>
-        </section>
-
-        <section id="skills" class="skills">
-            <h2>Skills</h2>
-            <ul class="skills-list">
-                <li>Adobe Creative Suite</li>
-                <li>Motion Graphics</li>
-                <li>Branding</li>
-                <li>Social Media Design</li>
-                <li>Video Editing (Shorts, Reels, Podcasts)</li>
-                <li>Graphic Design</li>
-            </ul>
-        </section>
-
-        <section id="services" class="services">
-            <h2>Services</h2>
-            <div class="service-grid">
-                <div class="card">Graphic Design</div>
-                <div class="card">Brand Identity Design</div>
-                <div class="card">Social Media Post Design</div>
-                <div class="card">Video Editing</div>
-                <div class="card">Podcast / Shorts / Reels Editing</div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">Home</a>
+                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">About</a>
+                <a href="#experience" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">Experience</a>
+                <a href="#skills" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">Skills</a>
+                <a href="#services" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">Services</a>
+                <a href="#portfolio" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">Portfolio</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">Contact</a>
             </div>
-        </section>
+        </div>
+    </nav>
 
-        <section id="portfolio" class="portfolio">
-            <h2>Portfolio</h2>
-            <div class="behance-embed">
-                <iframe src="https://www.behance.net/aryeaman" title="Behance Portfolio"></iframe>
+    <!-- Hero Section -->
+    <section id="home" class="pt-24 pb-16 md:pt-32 md:pb-24 hero-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">Hi, I'm <span class="text-blue-500">Azizur Rahman</span></h1>
+                    <p class="text-xl md:text-2xl text-gray-600 mb-8">Turning stories into stunning visuals through design and motion.</p>
+                    <a href="#portfolio" class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 px-8 rounded-lg transition duration-300 transform hover:scale-105">View My Work</a>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <div class="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-blue-500 floating">
+                        <!-- Placeholder for profile image -->
+                        <div class="w-full h-full bg-gray-200 flex items-center justify-center">
+                            <span class="text-gray-500">Profile Image</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="featured-projects">
-                <!-- Placeholder for featured projects -->
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12">About Me</h2>
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10">
+                    <p class="text-lg text-gray-600 mb-6">Hi, I'm Azizur Rahman — a multidisciplinary designer and video editor passionate about telling stories through pixels and motion. With a background in branding, social media content, and visual campaigns, I specialize in turning ideas into eye-catching, effective creative.</p>
+                    <p class="text-lg text-gray-600 mb-8">I believe in the power of visual storytelling to connect brands with their audiences in meaningful ways. Every project is an opportunity to create something memorable and impactful.</p>
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <h3 class="text-xl font-semibold mb-4">Education</h3>
+                        <div class="flex items-start">
+                            <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-graduation-cap text-blue-500"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium">BBA in Marketing</h4>
+                                <p class="text-gray-600">East West University, Bangladesh</p>
+                                <p class="text-gray-500 text-sm">Graduated in 2024</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <div class="bg-white p-8 rounded-lg shadow-sm">
+                        <h3 class="text-xl font-semibold mb-6">My Approach</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-2 rounded-full mr-4 mt-1">
+                                    <i class="fas fa-lightbulb text-blue-500 text-sm"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium mb-1">Concept Development</h4>
+                                    <p class="text-gray-600">Transforming abstract ideas into concrete visual concepts that communicate effectively.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-2 rounded-full mr-4 mt-1">
+                                    <i class="fas fa-palette text-blue-500 text-sm"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium mb-1">Design Execution</h4>
+                                    <p class="text-gray-600">Meticulous attention to detail in every design element to ensure quality and consistency.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-2 rounded-full mr-4 mt-1">
+                                    <i class="fas fa-film text-blue-500 text-sm"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium mb-1">Motion Storytelling</h4>
+                                    <p class="text-gray-600">Bringing static designs to life with movement that enhances the narrative and engages viewers.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-8">
+                            <a href="#" class="inline-flex items-center text-blue-500 hover:text-blue-600">
+                                <span>Download Resume</span>
+                                <i class="fas fa-download ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="contact" class="contact">
-            <h2>Contact</h2>
-            <form id="contact-form">
-                <input type="text" name="name" placeholder="Name" required>
-                <input type="email" name="email" placeholder="Email" required>
-                <textarea name="message" placeholder="Message" required></textarea>
-                <button type="submit" class="btn">Send</button>
-            </form>
-            <p id="form-message" class="hidden">Thanks! I'll get back to you shortly.</p>
-        </section>
-    </main>
+    <!-- Experience Section -->
+    <section id="experience" class="py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12">Professional Experience</h2>
+            <div class="max-w-3xl mx-auto">
+                <div class="space-y-8">
+                    <!-- Experience Item 1 -->
+                    <div class="relative timeline-item pl-8">
+                        <div class="absolute left-0 top-0 w-4 h-4 rounded-full bg-blue-500 border-4 border-blue-100"></div>
+                        <div class="bg-white p-6 rounded-lg shadow-sm">
+                            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-2">
+                                <h3 class="text-xl font-semibold">Brand Marketing Intern</h3>
+                                <span class="text-blue-500 font-medium">Oct 2024 – Dec 2024</span>
+                            </div>
+                            <h4 class="text-gray-700 font-medium mb-3">Marico BD</h4>
+                            <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                                <li>Managed Parachute Advansed brand projects and POSM design</li>
+                                <li>Contributed to campaign development and execution</li>
+                                <li>Collaborated with cross-functional teams on marketing initiatives</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Experience Item 2 -->
+                    <div class="relative timeline-item pl-8">
+                        <div class="absolute left-0 top-0 w-4 h-4 rounded-full bg-blue-500 border-4 border-blue-100"></div>
+                        <div class="bg-white p-6 rounded-lg shadow-sm">
+                            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-2">
+                                <h3 class="text-xl font-semibold">BizLearner (HR)</h3>
+                                <span class="text-blue-500 font-medium">Apr 2023 – Jun 2023</span>
+                            </div>
+                            <h4 class="text-gray-700 font-medium mb-3">Unilever BD</h4>
+                            <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                                <li>Designed campaign content focused on wellness and health</li>
+                                <li>Created internal communications materials</li>
+                                <li>Developed visual assets for employee engagement programs</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Experience Item 3 -->
+                    <div class="relative timeline-item pl-8">
+                        <div class="absolute left-0 top-0 w-4 h-4 rounded-full bg-blue-500 border-4 border-blue-100"></div>
+                        <div class="bg-white p-6 rounded-lg shadow-sm">
+                            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-2">
+                                <h3 class="text-xl font-semibold">CEX Executive</h3>
+                                <span class="text-blue-500 font-medium">Mar 2022 – Mar 2023</span>
+                            </div>
+                            <h4 class="text-gray-700 font-medium mb-3">Next Ventures</h4>
+                            <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                                <li>Handled client relationships and customer experience</li>
+                                <li>Achieved 17% sales growth through business development</li>
+                                <li>Created marketing materials and sales collateral</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <script src="script.js"></script>
+    <!-- Skills Section -->
+    <section id="skills" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12">Skills & Expertise</h2>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 justify-center">
+                <!-- Skill 1 -->
+                <div class="skill-card bg-white p-6 rounded-lg shadow-sm text-center transition duration-300">
+                    <div class="w-16 h-16 mx-auto mb-4 bg-blue-100 rounded-full flex items-center justify-center">
+                        <i class="fas fa-paint-brush text-blue-500 text-2xl"></i>
+                    </div>
+                    <h3 class="font-semibold">Graphic Design</h3>
+                </div>
+                
+                <!-- Skill 2 -->
+                <div class="skill-card bg-white p-6 rounded-lg shadow-sm text-center transition duration-300">
+                    <div class="w-16 h-16 mx-auto mb-4 bg-blue-100 rounded-full flex items-center justify-center">
+                        <i class="fas fa-film text-blue-500 text-2xl"></i>
+                    </div>
+                    <h3 class="font-semibold">Motion Graphics</h3>
+                </div>
+                
+                <!-- Skill 3 -->
+                <div class="skill-card bg-white p-6 rounded-lg shadow-sm text-center transition duration-300">
+                    <div class="w-16 h-16 mx-auto mb-4 bg-blue-100 rounded-full flex items-center justify-center">
+                        <i class="fas fa-trademark text-blue-500 text-2xl"></i>
+                    </div>
+                    <h3 class="font-semibold">Branding</h3>
+                </div>
+                
+                <!-- Skill 4 -->
+                <div class="skill-card bg-white p-6 rounded-lg shadow-sm text-center transition duration-300">
+                    <div class="w-16 h-16 mx-auto mb-4 bg-blue-100 rounded-full flex items-center justify-center">
+                        <i class="fas fa-hashtag text-blue-500 text-2xl"></i>
+                    </div>
+                    <h3 class="font-semibold">Social Media</h3>
+                </div>
+                
+                <!-- Skill 5 -->
+                <div class="skill-card bg-white p-6 rounded-lg shadow-sm text-center transition duration-300">
+                    <div class="w-16 h-16 mx-auto mb-4 bg-blue-100 rounded-full flex items-center justify-center">
+                        <i class="fas fa-video text-blue-500 text-2xl"></i>
+                    </div>
+                    <h3 class="font-semibold">Video Editing</h3>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12">Services I Offer</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="service-card bg-white p-8 rounded-lg shadow-sm transition duration-300">
+                    <div class="w-14 h-14 mb-6 bg-blue-100 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-pencil-ruler text-blue-500 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Graphic Design</h3>
+                    <p class="text-gray-600">Creating visually compelling designs for print and digital media that communicate your brand's message effectively.</p>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="service-card bg-white p-8 rounded-lg shadow-sm transition duration-300">
+                    <div class="w-14 h-14 mb-6 bg-blue-100 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-vector-square text-blue-500 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Brand Identity</h3>
+                    <p class="text-gray-600">Developing cohesive brand systems including logos, color palettes, typography, and visual guidelines.</p>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="service-card bg-white p-8 rounded-lg shadow-sm transition duration-300">
+                    <div class="w-14 h-14 mb-6 bg-blue-100 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-photo-video text-blue-500 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Social Media Content</h3>
+                    <p class="text-gray-600">Designing engaging social media posts, stories, and ads tailored to each platform's requirements.</p>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="service-card bg-white p-8 rounded-lg shadow-sm transition duration-300">
+                    <div class="w-14 h-14 mb-6 bg-blue-100 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-cut text-blue-500 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Video Editing</h3>
+                    <p class="text-gray-600">Professional editing for commercials, corporate videos, and creative projects with attention to pacing and storytelling.</p>
+                </div>
+                
+                <!-- Service 5 -->
+                <div class="service-card bg-white p-8 rounded-lg shadow-sm transition duration-300">
+                    <div class="w-14 h-14 mb-6 bg-blue-100 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-mobile-alt text-blue-500 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Short Form Content</h3>
+                    <p class="text-gray-600">Creating optimized vertical videos for Instagram Reels, TikTok, YouTube Shorts with engaging hooks and captions.</p>
+                </div>
+                
+                <!-- Service 6 -->
+                <div class="service-card bg-white p-8 rounded-lg shadow-sm transition duration-300">
+                    <div class="w-14 h-14 mb-6 bg-blue-100 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-podcast text-blue-500 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Podcast Production</h3>
+                    <p class="text-gray-600">Editing podcast audio, creating video versions, and designing cover art and promotional materials.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12">Featured Work</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Portfolio Item 1 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition duration-300">
+                    <div class="h-48 bg-gray-200 flex items-center justify-center">
+                        <span class="text-gray-500">Project Image</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Brand Identity Project</h3>
+                        <p class="text-gray-600 mb-4">Complete visual identity for a sustainable fashion startup.</p>
+                        <a href="https://www.behance.net/aryeaman" target="_blank" class="text-blue-500 hover:text-blue-600 font-medium inline-flex items-center">
+                            View Project <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Portfolio Item 2 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition duration-300">
+                    <div class="h-48 bg-gray-200 flex items-center justify-center">
+                        <span class="text-gray-500">Project Image</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Social Media Campaign</h3>
+                        <p class="text-gray-600 mb-4">30-day content series for a wellness brand's Instagram.</p>
+                        <a href="https://www.behance.net/aryeaman" target="_blank" class="text-blue-500 hover:text-blue-600 font-medium inline-flex items-center">
+                            View Project <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Portfolio Item 3 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition duration-300">
+                    <div class="h-48 bg-gray-200 flex items-center justify-center">
+                        <span class="text-gray-500">Project Image</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Product Explainer Video</h3>
+                        <p class="text-gray-600 mb-4">Animated explainer for a tech startup's mobile app.</p>
+                        <a href="https://www.behance.net/aryeaman" target="_blank" class="text-blue-500 hover:text-blue-600 font-medium inline-flex items-center">
+                            View Project <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-12">
+                <a href="https://www.behance.net/aryeaman" target="_blank" class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 px-8 rounded-lg transition duration-300 transform hover:scale-105">
+                    View Full Portfolio on Behance
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12">Get In Touch</h2>
+            <div class="flex flex-col md:flex-row">
+                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10">
+                    <h3 class="text-xl font-semibold mb-4">Let's Work Together</h3>
+                    <p class="text-gray-600 mb-6">Have a project in mind or want to discuss potential collaboration? I'd love to hear from you!</p>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-map-marker-alt text-blue-500"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium">Location</h4>
+                                <p class="text-gray-600">Dhaka, Bangladesh</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-clock text-blue-500"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium">Availability</h4>
+                                <p class="text-gray-600">Monday - Friday, 10AM - 6PM</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-8 flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-500 hover:bg-blue-500 hover:text-white transition duration-300">
+                            <i class="fab fa-behance"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-500 hover:bg-blue-500 hover:text-white transition duration-300">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-500 hover:bg-blue-500 hover:text-white transition duration-300">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-500 hover:bg-blue-500 hover:text-white transition duration-300">
+                            <i class="fab fa-dribbble"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <form id="contact-form" class="bg-white p-8 rounded-lg shadow-sm">
+                        <div class="mb-6">
+                            <label for="name" class="block text-gray-700 font-medium mb-2">Name</label>
+                            <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition duration-300" required>
+                        </div>
+                        <div class="mb-6">
+                            <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
+                            <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition duration-300" required>
+                        </div>
+                        <div class="mb-6">
+                            <label for="message" class="block text-gray-700 font-medium mb-2">Message</label>
+                            <textarea id="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition duration-300" required></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 px-6 rounded-lg transition duration-300 transform hover:scale-105">
+                            Send Message
+                        </button>
+                    </form>
+                    <div id="form-success" class="hidden mt-4 p-4 bg-green-100 text-green-700 rounded-lg">
+                        Thanks! I'll get back to you shortly.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 bg-gray-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <p>&copy; 2024 Azizur Rahman. All rights reserved.</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="hover:text-blue-400 transition duration-300">Privacy Policy</a>
+                    <a href="#" class="hover:text-blue-400 transition duration-300">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when clicking a link
+        const mobileLinks = document.querySelectorAll('#mobile-menu a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+        
+        // Form submission
+        const contactForm = document.getElementById('contact-form');
+        const formSuccess = document.getElementById('form-success');
+        
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            // Here you would typically send the form data to a server
+            // For demo purposes, we'll just show the success message
+            contactForm.reset();
+            formSuccess.classList.remove('hidden');
+            setTimeout(() => {
+                formSuccess.classList.add('hidden');
+            }, 5000);
+        });
+        
+        // Active nav link highlighting
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+        
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (pageYOffset >= (sectionTop - 300)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
